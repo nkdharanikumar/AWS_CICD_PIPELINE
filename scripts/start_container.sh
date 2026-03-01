@@ -1,9 +1,9 @@
 #!/bin/bash
 set -e
 
-# Pull the Docker image from Docker Hub
-docker pull dklokiuk/simple-python-flask-app
+sudo docker pull dklokiuk/simple-python-flask-app
 
-
-# Run the Docker image as a container
-docker run -d -p 5000:5000 dklokiuk/simple-python-flask-app
+sudo docker run -d \
+  --name simple-python-flask-app \
+  -p 5000:5000 \
+  dklokiuk/simple-python-flask-app
