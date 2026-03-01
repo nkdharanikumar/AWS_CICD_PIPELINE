@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS CI/CD | Real-Time System Monitor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Load phosphor icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+    <div class="background-elements">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <div class="container">
+        <header class="glass-header">
+            <div class="header-content">
+                <div class="title-group">
+                    <i class="ph-fill ph-activity logo-icon"></i>
+                    <h1>System <span class="highlight">Monitor</span></h1>
+                </div>
+                <div class="status-badge">
+                    <span class="pulse-dot"></span>
+                    <span id="env-status">Live</span>
+                </div>
+            </div>
+            <div class="metadata" id="system-metadata">
+                <div class="meta-item">
+                    <i class="ph ph-hard-drives"></i>
+                    <span id="sys-hostname">Loading...</span>
+                </div>
+                <div class="meta-item">
+                    <i class="ph ph-wifi-high"></i>
+                    <span id="sys-ip">Loading...</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="dashboard-grid">
+            <!-- CPU Card -->
+            <div class="metric-card glass-card" id="card-cpu">
+                <div class="card-header">
+                    <div class="card-title">
+                        <i class="ph-duotone ph-cpu text-blue"></i>
+                        <h2>CPU Usage</h2>
+                    </div>
+                </div>
+                <div class="metric-content">
+                    <div class="progress-ring-container">
+                        <svg class="progress-ring" viewBox="0 0 120 120">
+                            <circle class="ring-bg" cx="60" cy="60" r="54"></circle>
+                            <circle class="ring-progress" id="cpu-ring" cx="60" cy="60" r="54"></circle>
+                        </svg>
+                        <div class="ring-text">
+                            <span id="cpu-val" class="main-val">0</span><span class="unit">%</span>
+                        </div>
+                    </div>
+                    <div class="metric-details">
+                        <p>Cores: <strong id="cpu-cores">-</strong></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Memory Card -->
+            <div class="metric-card glass-card" id="card-mem">
+                <div class="card-header">
+                    <div class="card-title">
+                        <i class="ph-duotone ph-memory text-purple"></i>
+                        <h2>Memory</h2>
+                    </div>
+                </div>
+                <div class="metric-content">
+                    <div class="progress-ring-container">
+                        <svg class="progress-ring" viewBox="0 0 120 120">
+                            <circle class="ring-bg" cx="60" cy="60" r="54"></circle>
+                            <circle class="ring-progress" id="mem-ring" cx="60" cy="60" r="54"></circle>
+                        </svg>
+                        <div class="ring-text">
+                            <span id="mem-val" class="main-val">0</span><span class="unit">%</span>
+                        </div>
+                    </div>
+                    <div class="metric-details">
+                        <p><strong id="mem-used">-</strong> / <span id="mem-total">-</span> GB</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Disk Card -->
+            <div class="metric-card glass-card" id="card-disk">
+                <div class="card-header">
+                    <div class="card-title">
+                        <i class="ph-duotone ph-database text-green"></i>
+                        <h2>Storage</h2>
+                    </div>
+                </div>
+                <div class="metric-content">
+                    <div class="progress-ring-container">
+                        <svg class="progress-ring" viewBox="0 0 120 120">
+                            <circle class="ring-bg" cx="60" cy="60" r="54"></circle>
+                            <circle class="ring-progress" id="disk-ring" cx="60" cy="60" r="54"></circle>
+                        </svg>
+                        <div class="ring-text">
+                            <span id="disk-val" class="main-val">0</span><span class="unit">%</span>
+                        </div>
+                    </div>
+                    <div class="metric-details">
+                        <p><strong id="disk-used">-</strong> / <span id="disk-total">-</span> GB</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer class="glass-footer">
+            <p>Deployed via AWS CI/CD Pipeline</p>
+            <div class="refresh-indicator">
+                <i class="ph ph-arrows-clockwise"></i> Auto-updating
+            </div>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
